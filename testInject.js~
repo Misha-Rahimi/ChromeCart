@@ -1,7 +1,9 @@
 var button = document.getElementById("add-to-cart-button");
 if (button !== null) {
 	button.addEventListener("click", function() {
-		alert("add to cart clicked" + button.getElementId);
+		var price = document.getElementById("price_inside_buybox").innerText;
+		alert("add to cart clicked" + price);
 	}, false);
 }
+
 
