@@ -10,9 +10,12 @@
 	},
 	"content_scripts": [
 		{
-			"js": ["content.js"],
+			"js": ["testInject.js"],
 			"css": ["content.css"],
-			"matches": ["https://*.google.com/*"]
+			"matches": ["https://*.amazon.com/*"]
 		}
+	],
+	"permissions": [
+		"activeTab"
 	]
 }
