@@ -55,3 +55,14 @@ if (macysButton !== undefined) {
 		alert("you have added " + quantity + " items of the product " + productTitle + " for a price of " + price + " each");
 	}, false);
 }
+
+//walmart
+var walmartButton = document.getElementsByClassName("spin-button-children")[0];
+
+if (walmartButton !== null) {
+	walmartButton.addEventListener("click", function() {
+		var price = document.getElementsByClassName("price display-inline-block arrange-fit price price--stylized")[0].innerText;
+
+		alert("You added an item that costs " + price + " to your ChromeCart");
+	}, false);
+} //if
