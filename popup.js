@@ -9,9 +9,16 @@
 			
 			//adds link to website
 			var itemLink = document.createElement("a");
+			
+			//gets url
+			var url;
+			chrome.tabs.query({'active': true, lastFocusedWindow: true},
+			function(tabs){
+				url = tabs[0].url;
+			}); //move this to testInject and get url from data?
+			
 			itemLink.id = "item " + (i + 1);
-            itemLink.setAttribute("href", 
-                "https://www.google.com"); //change to website link
+            itemLink.setAttribute("href", url); //change to website link
 			itemLink.target = "_blank";
 
 			//makes header
