@@ -1,5 +1,9 @@
 body {
+<<<<<<< HEAD
 	background-color: #CFD9FA !important;
+=======
+	background-color: #809fd1 !important;
+>>>>>>> 6fb96f26be067d1adf4232870d595b99d08c4587
 	min-width: 350px;
 	max-width: 100%;
 }

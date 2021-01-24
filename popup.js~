@@ -55,17 +55,43 @@
 		/*
 
 		// loops through each item, creating an element
-		for (var i = 0; i < items.length; i++) {				
-			var btn = document.createElement("h3");
-			btn.innerHTML = items[i];
-			document.body.appendChild(btn);
+		for (var i = 0; i < items.length; i++) {		
+			var divider = document.createElement("div");
+			divider.id = "div " + (i + 1);
+			
+			//adds link to website
+			var itemLink = document.createElement("a");
+			
+			//gets url
+			var url;
+			chrome.tabs.query({'active': true, lastFocusedWindow: true},
+			function(tabs){
+				url = tabs[0].url;
+			}); //move this to testInject and get url from data?
+			
+			itemLink.id = "item " + (i + 1);
+            itemLink.setAttribute("href", url); //change to website link
+			itemLink.target = "_blank";
+
+			//makes header
+			var itemHeader = document.createElement("h3");
+			itemHeader.innerHTML = items[i];
+			itemLink.appendChild(itemHeader);
+			
+			divider.appendChild(itemLink);
+			document.body.appendChild(divider);
 		} //for
 
 		*/
 	} //makeList()
 	document.getElementById("makeList").onclick = makeList;
 
+	  //buttons for each cart (to avoid pop-up blocker)
+      document.getElementById("amazonCart").onclick = function () {
+			window.open("https://www.amazon.com/gp/cart/view.html?ref_=nav_cart");
+      };
 
+<<<<<<< HEAD
 		function edit() {
         console.log("peepeepoopoo");
         var elements = document.getElementById("delete");
@@ -118,9 +144,17 @@
         var label = document.createElement("label");
         label.htmlFor = "car";
         label.appendChild(document.createTextNode("Car"));
+=======
+	  document.getElementById("walmartCart").onclick = function () {
+			window.open("https://www.walmart.com/cart");
+	  };
+>>>>>>> 6fb96f26be067d1adf4232870d595b99d08c4587
 
-        var br = document.createElement("br");
+	  document.getElementById("macysCart").onclick = function () {
+			window.open("https://www.macys.com/my-bag?cm_sp=navigation-_-top_nav-_-bag&lid=glbtopnav_bag-us");
+	  };
 
+<<<<<<< HEAD
         var container = document.getElementById("container");
         container.appendChild(checkbox);
         container.appendChild(label);
@@ -128,3 +162,8 @@
       };
 
       */
+=======
+	  document.getElementById("ebayCart").onclick = function () {
+			window.open("https://cart.ebay.com/");
+	  };
+>>>>>>> 6fb96f26be067d1adf4232870d595b99d08c4587
