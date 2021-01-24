@@ -1,5 +1,51 @@
+<!DOCTYPE html>
 <html>
-	<body>
-		<h1>ChromeCart</h1>
-	</body>
+  <head>
+    <title>ChromeCart</title>    
+	<script src="testInject.js"></script>
+    <link rel="stylesheet" href="/content.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>ChromeCart</h1>
+      <h3>Here is you cart:</h3>
+      <form action="delete" id="delete">
+        <input
+          type="checkbox"
+          id="item"
+          href="google.com"
+          name="link1"
+          value="item"
+          disabled="true"
+        />
+        <label for="link1"><a href="https://www.google.com/">1</a></label
+        ><br />
+        <input
+          type="checkbox"
+          id="item"
+          name="link2"
+          value="item"
+          disabled="true"
+        />
+        <label for="link2"> 2</label><br />
+        <input
+          type="checkbox"
+          id="item"
+          href="google.com"
+          name="link3"
+          value="item"
+          disabled="true"
+        />
+        <label for="link3"> 3</label><br /><br />
+      </form>
+      <div class="buttonPlacement">
+        <button type="button" id="editButton">Edit cart</button>
+		<!-- button for manually making list (maybe change this?) -->
+		<button type="button" id="makeList">Make List</button>
+		<script src="popup.js"></script>
+
+      </div>
+    </div>
+  </body>
 </html>
+

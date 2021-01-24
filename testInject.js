@@ -79,7 +79,12 @@ var walmartButton = document.getElementsByClassName("spin-button-children")[0];
 if (walmartButton !== undefined) {
 	walmartButton.addEventListener("click", function() {
 		var price = document.getElementsByClassName("price display-inline-block arrange-fit price price--stylized")[0].innerText;
+<<<<<<< HEAD
 		alert("You added an item that costs " + price + " to your ChromeCart");
+=======
+		var name = document.getElementsByClassName("prod-ProductTitle prod-productTitle-buyBox font-bold")[0].innerText;
+		alert("You added " + name + " that costs " + price + " to your ChromeCart");
+>>>>>>> 4eeac7d718eec16b759ae675362d60c4decb1847
 	}, false);
 }
 
