@@ -35,7 +35,7 @@ if (ebayButton !== undefined) {
 //Handling for Macy's
 var allMacysElements = document.getElementsByClassName("expanded");
 var macysButton;
-alert("length " + allMacysElements.length);
+//alert("length " + allMacysElements.length);
 
 for (var i = 0; i < allMacysElements.length; i++) {
 	var buttonText = allMacysElements[i].innerText.toLowerCase();
@@ -52,7 +52,8 @@ for (var i = 0; i < allMacysElements.length; i++) {
 if (macysButton !== undefined) {
 	alert("button defined");
 var price = document.getElementsByClassName("price")[0];
-		alert("price good");
+	//TODO: move this stuff back under the event listener after we figure out the issue	
+	alert("price good");
 		var salePrice = document.getElementsByClassName("medium-font bold on-sale");
 		alert("sale price seen");
 		if (salePrice !== null) price = salePrice[0].innerText;
@@ -78,7 +79,8 @@ var walmartButton = document.getElementsByClassName("spin-button-children")[0];
 if (walmartButton !== undefined) {
 	walmartButton.addEventListener("click", function() {
 		var price = document.getElementsByClassName("price display-inline-block arrange-fit price price--stylized")[0].innerText;
-		alert("You added an item that costs " + price + " to your ChromeCart");
+		var name = document.getElementsByClassName("prod-ProductTitle prod-productTitle-buyBox font-bold")[0].innerText;
+		alert("You added " + name + " that costs " + price + " to your ChromeCart");
 	}, false);
 }
 
