@@ -46,11 +46,12 @@
     <script>
       function edit() {
         console.log("peepeepoopoo");
+        var elements = document.getElementById("delete");
+
         for (var i = 0, element; (element = elements[i++]); ) {
           console.log(element);
-        }
-        var elements = document.getElementById("delete");
-        if (document.getElementById("edit").innerHTML === "Edit cart") {
+        }        
+		if (document.getElementById("edit").innerHTML === "Edit cart") {
           document.getElementById("edit").innerHTML = "Delete Selected Items";
           console.log(document.getElementById("edit").innerHTML);
 
