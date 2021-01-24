@@ -3,14 +3,27 @@
 		var items = ["item1", "item2", "item3", "item4"]; //items (change to stored data)
 		
 		// loops through each item, creating an element
-		for (var i = 0; i < items.length; i++) {				
-			var btn = document.createElement("h3");
-			btn.innerHTML = items[i];
-			document.body.appendChild(btn);
+		for (var i = 0; i < items.length; i++) {		
+			var divider = document.createElement("div");
+			divider.id = "div " + (i + 1);
+			
+			//adds link to website
+			var itemLink = document.createElement("a");
+			itemLink.id = "item " + (i + 1);
+            itemLink.setAttribute("href", 
+                "https://www.google.com"); //change to website link
+			itemLink.target = "_blank";
+
+			//makes header
+			var itemHeader = document.createElement("h3");
+			itemHeader.innerHTML = items[i];
+			itemLink.appendChild(itemHeader);
+			
+			divider.appendChild(itemLink);
+			document.body.appendChild(divider);
 		} //for
 	} //makeList()
 	document.getElementById("makeList").onclick = makeList;
-
 
 		function edit() {
         console.log("peepeepoopoo");
@@ -54,20 +67,21 @@
       }
 
       document.getElementById("submit").onclick = function () {
-        var checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.id = "car";
-        checkbox.name = "interest";
-        checkbox.value = "car";
+      //  var checkbox = document.createElement("input");
+      //  checkbox.type = "checkbox";
+      //  checkbox.id = "car";
+      //  checkbox.name = "interest";
+      //  checkbox.value = "car";
 
-        var label = document.createElement("label");
-        label.htmlFor = "car";
-        label.appendChild(document.createTextNode("Car"));
+      //  var label = document.createElement("label");
+      //  label.htmlFor = "car";
+      //  label.appendChild(document.createTextNode("Car"));
 
-        var br = document.createElement("br");
+      //  var br = document.createElement("br");
 
-        var container = document.getElementById("container");
-        container.appendChild(checkbox);
-        container.appendChild(label);
-        container.appendChild(br);
+      //  var container = document.getElementById("container");
+      //  container.appendChild(checkbox);
+      //  container.appendChild(label);
+      //  container.appendChild(br);
       };
+
