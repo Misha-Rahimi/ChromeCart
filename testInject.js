@@ -2,6 +2,7 @@
 
 //alert("at the top");
 initializeCart();
+
 var amazonButton = document.getElementById("add-to-cart-button");
 if (amazonButton !== null) {
 	amazonButton.addEventListener("click", function() {
@@ -9,6 +10,7 @@ if (amazonButton !== null) {
 		var quantity = document.getElementsByClassName("a-dropdown-prompt")[0].innerText;
 		var productTitle = document.getElementById("productTitle").innerText;
 		alert("You added " + quantity + " of the item " + productTitle + " that cost " + price + " each to your ChromeCart");
+		difAddProduct(quantity, price, productTitle);
 		addProduct(quantity, price, productTitle);
 	}, false);
 }
@@ -173,17 +175,21 @@ chrome.storage.sync.get([difKey1], function(result3) {
 });
 
 */
-
+//clearCart();
 var testingProductKey = '3';
+
 /*
 chrome.storage.sync.set({[testingProductKey]: value1}, function() {
 	alert("new product info is " + value1);
 });
 */
 
+/*
 chrome.storage.sync.get([testingProductKey], function(result) {
-//	alert("product info: " + result[testingProductKey]);
+	alert("product info: " + result[testingProductKey]);
 });
+*/
+
 
 //clearCart();
 
@@ -192,6 +198,9 @@ function clearCart() {
 	initializeCart();
 }
 
+var allProductsKey = 'allProductsKey';
+var allProductsValue = [];
+if (allProductsValue === null) alert("true");
 function initializeCart() {
 	var checkCartSizeKey = 'cartSizeKey';
 	var value = 0;
@@ -200,11 +209,15 @@ function initializeCart() {
 			chrome.storage.sync.set({[checkCartSizeKey]: value}, function() {
 				alert("initialized cart size");
 			});
-		} else alert("else invoked");
+		}
 	});
+/*
+			chrome.storage.sync.set({[allProductsKey]: allProductsValue}, function() {
+				alert("all products intitialized to " + allProductsValue);
+			});
+*/		
+
 }
-
-
 
 function addProduct(quantity, price, productTitle) {
 	var cartSizeKey = 'cartSizeKey';
@@ -228,7 +241,7 @@ function addProduct(quantity, price, productTitle) {
 
 		chrome.storage.sync.set({[productKey]: productInfo}, function() {
 			alert("Key: " + productKey + " plus the value");
-
+			
 			chrome.storage.sync.set({[cartSizeKey]: productKey}, function() {
 				alert("set cartsize to " + productKey);
 			});
@@ -236,7 +249,34 @@ function addProduct(quantity, price, productTitle) {
 	});
 }
 
+function difAddProduct(quantity, price, productTitle) {
+	alert("dif called");
+	var productInfo = [quantity, price, productTitle];
+	var newProductAdd = [];
+	chrome.storage.sync.get([allProductsKey], function(response) {
+		alert("into dif get");
+		//var newValue = response[allProductsKey].push(productInfo);
+		alert(response[allProductsKey]);
+		newProductAdd = response[allProductsKey].push("value2");
+		alert('lengt ' + newProductAdd);
+
+		chrome.storage.sync.set({[allProductsKey]: newProductAdd}, function() {
+			alert("current products list size " + newProductAdd.length);
+		});
+	});
+}
 
 
 
+//Respond to request from popup with all items in shopping cart
+
+chrome.runtime.onMessage.addListener(
+  function(request, sender, sendResponse) {
+    console.log(sender.tab ?
+                "from a content script:" + sender.tab.url :
+                "from the extension");
+    if (request.greeting == "hello")
+      sendResponse({farewell: "goodbye"});
+  }
+);
 

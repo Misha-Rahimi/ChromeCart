@@ -11,7 +11,6 @@
 	"content_scripts": [
 		{
 			"js": ["testInject.js"],
-			"css": ["content.css"],
 			"matches": ["https://*.amazon.com/*", "https://*.ebay.com/*", "https://*.macys.com/*", "https://*.walmart.com/*"]
 		}
 	],
