@@ -25,12 +25,19 @@
 	} //makeList()
 	document.getElementById("makeList").onclick = makeList;
 
-	  //spam opens all carts
-      document.getElementById("submit").onclick = function () {
-			window.open("https://cart.ebay.com/");
-			window.open("https://www.walmart.com/cart");
+	  //buttons for each cart (to avoid pop-up blocker)
+      document.getElementById("amazonCart").onclick = function () {
 			window.open("https://www.amazon.com/gp/cart/view.html?ref_=nav_cart");
-			window.open("https://www.macys.com/my-bag?cm_sp=navigation-_-top_nav-_-bag&lid=glbtopnav_bag-us");
-
       };
 
+	  document.getElementById("walmartCart").onclick = function () {
+			window.open("https://www.walmart.com/cart");
+	  };
+
+	  document.getElementById("macysCart").onclick = function () {
+			window.open("https://www.macys.com/my-bag?cm_sp=navigation-_-top_nav-_-bag&lid=glbtopnav_bag-us");
+	  };
+
+	  document.getElementById("ebayCart").onclick = function () {
+			window.open("https://cart.ebay.com/");
+	  };
