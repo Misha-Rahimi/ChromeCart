@@ -1,4 +1,7 @@
 //Handling for Amazon
+
+//alert("at the top");
+
 var amazonButton = document.getElementById("add-to-cart-button");
 if (amazonButton !== null) {
 	amazonButton.addEventListener("click", function() {
@@ -6,6 +9,7 @@ if (amazonButton !== null) {
 		var quantity = document.getElementsByClassName("a-dropdown-prompt")[0].innerText;
 		var productTitle = document.getElementById("productTitle").innerText;
 		alert("You added " + quantity + " of the item " + productTitle + " that cost " + price + " each to your ChromeCart");
+		addProduct(quantity, price, productTitle);
 	}, false);
 }
 
@@ -31,27 +35,206 @@ if (ebayButton !== undefined) {
 //Handling for Macy's
 var allMacysElements = document.getElementsByClassName("expanded");
 var macysButton;
+alert("length " + allMacysElements.length);
 
 for (var i = 0; i < allMacysElements.length; i++) {
 	var buttonText = allMacysElements[i].innerText.toLowerCase();
-	//alert(buttonText);
+	alert(buttonText);
 	//if (buttonText.includes("bag")) alert("yes bag"); else alert("no bag");
 	//if (buttonText.includes("add")) alert("yes add"); else alert("no add");
 	if (buttonText.includes('bag') && buttonText.includes('add')) {
 		macysButton = allMacysElements[i];
-		//alert("in if");
+		alert("in if");
 		break;
 	}
 }
 
 if (macysButton !== undefined) {
-	macysButton.addEventListener('click', function() {
-		var price = document.getElementsByClassName("price")[0];
+	alert("button defined");
+var price = document.getElementsByClassName("price")[0];
+		alert("price good");
 		var salePrice = document.getElementsByClassName("medium-font bold on-sale");
+		alert("sale price seen");
 		if (salePrice !== null) price = salePrice[0].innerText;
+		alert("past if");
 		var quantity = document.getElementsByClassName("qty-val")[0].innerText;
+		alert("quantity good");
 		var productTitle = document.getElementsByClassName("p-name h3")[0].innerText;
+		alert("title good");
+alert("you have added " + quantity + " items of the product " + productTitle + " for a price of " + price + " each");
+
+	macysButton.addEventListener('click', function() {
+		alert("inside action listener");
 		
-		alert("you have added " + quantity + " items of the product " + productTitle + " for a price of " + price + " each");
+
+		
 	}, false);
 }
+
+//alert("after macy's");
+
+//Walmart
+var walmartButton = document.getElementsByClassName("spin-button-children")[0];
+if (walmartButton !== undefined) {
+	walmartButton.addEventListener("click", function() {
+		var price = document.getElementsByClassName("price display-inline-block arrange-fit price price--stylized")[0].innerText;
+		alert("You added an item that costs " + price + " to your ChromeCart");
+	}, false);
+}
+
+
+
+
+
+/*
+var key = 'currentNumberProducts';
+var value = 0;
+chrome.storage.sync.set({key: value}, function() {
+	alert('3 value is set to ' + value);
+});
+alert("4 stored value");
+
+chrome.storage.sync.get(['key'], function(result) {
+	alert('5 value currently is ' + result.key);
+
+	var newValue = result.key + 1;
+	alert("6 why isn't the below changing to " + newValue);
+	chrome.storage.sync.set({key: newValue}, function() {
+		alert("7 changed value to " + newValue);
+	});
+});
+*/
+/*
+var key = 'currentNumberProducts';
+chrome.storage.sync.get(['key'], function(result) {
+	alert('size of ChromeCart is currently ' + result.key);
+});
+*/
+
+var key = 'cartSizeKey';
+/*
+var value = 0;
+chrome.storage.sync.set({key: value}, function() {
+	alert("set cart size to " + value);
+});
+*/
+
+
+
+
+var testKey = 'cartSizeKey';
+
+chrome.storage.sync.get([testKey], function(result) {
+//	alert("cart size is " + result[testKey]);
+});
+
+
+
+/*
+var testKey = 'cartSizeKey';
+chrome.storage.sync.get([testKey], function(result) {
+	var newValue = result.key + 1;
+	alert("new value: " + newValue);
+	chrome.storage.sync.set({key: newValue}, function() {
+		alert("changed to new value: " + newValue);
+	});
+});
+*/
+
+
+
+/*
+var key1 = 'testKey1';
+var key2 = 'testKey2';
+var value1 = "testValue1";
+var value2 = "testValue2";
+
+chrome.storage.sync.set({[key1]: value1}, function() {
+	//alert("Set value to " + value1);
+});
+chrome.storage.sync.set({key2: value2}, function() {
+	//alert("Set value to " + value2);
+});
+
+chrome.storage.sync.get([key1], function(result1) {
+	//alert("Stringified: " + JSON.stringify(result1));
+	//alert("Value of 1: " + result1[key1]);
+});
+chrome.storage.sync.get(['key2'], function(result2) {
+	//alert("Value of 2: " + result2.key2);
+});
+//alert("End of testing");
+
+var difKey1 = 'testKey1';
+chrome.storage.sync.get([difKey1], function(result3) {
+	//alert("Value of 1 with different variable: " + result3[difKey1]);
+});
+
+*/
+
+var testingProductKey = '3';
+/*
+chrome.storage.sync.set({[testingProductKey]: value1}, function() {
+	alert("new product info is " + value1);
+});
+*/
+
+chrome.storage.sync.get([testingProductKey], function(result) {
+//	alert("product info: " + result[testingProductKey]);
+});
+
+//clearCart();
+
+function clearCart() {
+	chrome.storage.sync.clear();
+	initializeCart();
+}
+
+function initializeCart() {
+	var checkCartSizeKey = 'cartSizeKey';
+	var value = 0;
+	chrome.storage.sync.get([checkCartSizeKey], function(result) {
+		if (result[checkCartSizeKey] === undefined) {
+			chrome.storage.sync.set({[checkCartSizeKey]: value}, function() {
+				alert("initialized cart size");
+			});
+		} else alert("else invoked");
+	});
+}
+
+
+
+function addProduct(quantity, price, productTitle) {
+	var cartSizeKey = 'cartSizeKey';
+	var productInfo = [quantity, price, productTitle];
+	
+	chrome.storage.sync.get([cartSizeKey], function(cartSizeResult) {
+		//productKey is onre more than original cartSize
+		alert("adding one to " + cartSizeResult[cartSizeKey]);
+		var productKey = cartSizeResult[cartSizeKey] + 1;
+
+		/*
+		//change the size of the cart
+		chrome.storage.sync.set({[cartSizeKey]: productKey}, function() {	
+			alert("set cartsize to " + productKey);
+			//add the item
+			chrome.storage.sync.set({[cartSizeKey]: productKey}, function() {
+				alert("New Key: " + productKey + " Value: ");
+			});
+		});
+		*/
+
+		chrome.storage.sync.set({[productKey]: productInfo}, function() {
+			alert("Key: " + productKey + " plus the value");
+
+			chrome.storage.sync.set({[cartSizeKey]: productKey}, function() {
+				alert("set cartsize to " + productKey);
+			});
+		});
+	});
+}
+
+
+
+
+
