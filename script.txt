@@ -13,8 +13,9 @@ Person 2: By doing this, the user is able to quickly see what they have put
         in their cart and make it easier to both compare items and refer to
         them for a future time.
 ---START DEMO HERE---
+https://www.amazon.com/AUKEY-Bedside-Dimmable-Changing-Bedrooms/dp/B01AJ7F14I/ref=sr_1_4?dchild=1&keywords=lamp&qid=1611495849&sr=8-4
 Person 3: Here is an example of how this works. Say a user is browsing for
-        xxx on Amazon. If they choose to add it to their cart, they will also
+        lamp on Amazon. If they choose to add it to their cart, they will also
         see it being added to the list of items in the chrome extension. 
 Person 1: For whatever site that they are on, we have added an action listener
         on the "add to cart button" which, when clicked, triggers a series of
