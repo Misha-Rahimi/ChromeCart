@@ -1,3 +1,5 @@
 body {
-	background-color: #0370ff !important;
+	background-color: #809fd1 !important;
+	min-width: 350px;
+	max-width: 100%;
 }
