@@ -10,8 +10,8 @@ if (amazonButton !== null) {
 		var quantity = document.getElementsByClassName("a-dropdown-prompt")[0].innerText;
 		var productTitle = document.getElementById("productTitle").innerText;
 		alert("You added " + quantity + " of the item " + productTitle + " that cost " + price + " each to your ChromeCart");
-		difAddProduct(quantity, price, productTitle);
-		addProduct(quantity, price, productTitle);
+		//difAddProduct(quantity, price, productTitle);
+		addProduct(quantity, price, productTitle, getListingUrl());
 	}, false);
 }
 
@@ -30,6 +30,7 @@ if (ebayButton !== undefined) {
 		var itemTitle = document.getElementsByClassName("it-ttl")[0].innerText;
 		var price = document.getElementById("prcIsum").innerText;
 		var quantity = document.getElementById("qtyTextBox").value;
+		addProduct(quantity, price, itemTitle, getListingUrl());
 		alert("added " + quantity + " items of " + itemTitle + " on ebay for " + price + " each");
 	}, false);
 }
@@ -83,11 +84,23 @@ if (walmartButton !== undefined) {
 		var price = document.getElementsByClassName("price display-inline-block arrange-fit price price--stylized")[0].innerText;
 		var name = document.getElementsByClassName("prod-ProductTitle prod-productTitle-buyBox font-bold")[0].innerText;
 		alert("You added " + name + " that costs " + price + " to your ChromeCart");
+		addProduct("1", price, name, getListingUrl());
 	}, false);
 }
 
-
-
+//clearCart();
+function getListingUrl() {
+	alert("asked for url");
+	return window.location.href;
+	/*
+	var url;
+	chrome.tabs.query({'active': true, lastFocusedWindow: true},
+		function(tabs){
+			url = tabs[0].url;
+		});
+	return url;
+	*/
+}
 
 
 /*
@@ -219,9 +232,9 @@ function initializeCart() {
 
 }
 
-function addProduct(quantity, price, productTitle) {
+function addProduct(quantity, price, productTitle, url) {
 	var cartSizeKey = 'cartSizeKey';
-	var productInfo = [quantity, price, productTitle];
+	var productInfo = [quantity, price, productTitle, url];
 	
 	chrome.storage.sync.get([cartSizeKey], function(cartSizeResult) {
 		//productKey is onre more than original cartSize

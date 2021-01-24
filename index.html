@@ -1,50 +1,56 @@
 <!DOCTYPE html>
 <html>
   <head>
+<style>
+	* {
+		box-sizing: border-box;
+	}
+
+	.column1 {
+		float: left;
+		width: 50%;
+		padding: 10px;
+	}
+
+	.column2 {
+		float: left;
+		width: 25%;
+		padding: 10px;
+	}
+	.column3 {
+		float: left;
+		width: 25%;
+		padding: 10px;
+	
+
+	.row:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+</style>
     <title>ChromeCart</title>    
-	<script src="testInject.js"></script>
+	<script src="popup.js"></script>
     <link rel="stylesheet" href="/content.css" />
   </head>
   <body>
     <div class="container">
-      <h1>ChromeCart</h1>
-      <h3>Here is you cart:</h3>
-      <form action="delete" id="delete">
-        <input
-          type="checkbox"
-          id="item"
-          href="google.com"
-          name="link1"
-          value="item"
-          disabled="true"
-        />
-        <label for="link1"><a href="https://www.google.com/">1</a></label
-        ><br />
-        <input
-          type="checkbox"
-          id="item"
-          name="link2"
-          value="item"
-          disabled="true"
-        />
-        <label for="link2"> 2</label><br />
-        <input
-          type="checkbox"
-          id="item"
-          href="google.com"
-          name="link3"
-          value="item"
-          disabled="true"
-        />
-        <label for="link3"> 3</label><br /><br />
-      </form>
-      <div class="buttonPlacement">
-        <button type="button" id="editButton">Edit cart</button>
-		<!-- button for manually making list (maybe change this?) -->
-		<button type="button" id="makeList">Make List</button>
-		<script src="popup.js"></script>
+      <h1 id='header1'>ChromeCart</h1>
+      <div class='row'>
+	      <div class='column1' id='titleColumn'>
+		      <h2 id='column10' name='1'>Product Title</h2>
+	      </div>
+	      <div class='column2' id='quantityColumn'>
+		      <h2>Quantity</h2>
+	      </div>
+	      <div class='column3' id='unitPriceColumn'>
+		      <h2>Unit Price</h2>
+	      </div>
 
-      </div>
+    </div>
+    <div class='buttonPlacement'>
+	<button id='submitButton'>Submit Cart</button>
+	
     </div>
   </body>
 </html>

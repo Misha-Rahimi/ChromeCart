@@ -1,7 +1,20 @@
-	function makeList() {
+/*
+var submitButton = document.getElementById('submitButton');
+if (submitButton !== null && submitButton !== undefined) {
+submitButton.addEventListner('click', function() {
+	chrome.storage.sync.clear();
+});
+}
+//else alert("button messed up");
+*/
+makeList();
+
+function makeList() {
+
+
 		console.log("gonna make a list");
 		var key = "cartSizeKey";
-		
+		var totalPrice = 0;		
 		var items = [];
 		/*
 		console.log("before first get");
@@ -34,10 +47,64 @@
 				if (items.length == cartSize) {
 					console.log("final length is " + items.length);
 					for (var j = 0; j < items.length; j++) {
-						var btn = document.createElement('h3');
-						if (items[j][2].length > 30)btn.innerHTML = items[j][2].substring(0, 20) + "...";
-						document.body.appendChild(btn);
+						/*
+						var title = items[j][2];
+						var quantity = items[j][0];
+						var unitPrice = items[j][1];
+						if (title.length > 40) title = title.substring(0, 20) + "...";
+						var titleButton = document.createElement('p');
+						titleButton.innerText = title;
+						*/
+						var title = items[j][2];
+						if (title.length > 35) title = title.substring(0, 35) + "...";
+						/*
+						let productTitle = document.createElement('p');
+						productTitle.innerText = title;
+						const titleColumn = document.querySelector('#titleColumn');
+						titleColumn.appendChild(productTitle);
+						*/
+					
+						var quantityText = items[j][0];
+						let quantity = document.createElement('p');
+						quantity.innerText = quantityText;
+						const quantityColumn = document.querySelector('#quantityColumn');
+						quantityColumn.appendChild(quantity);
+						
+						var unitPriceText = items[j][1];
+						unitPriceText = unitPriceText.replace(/\s+/g, '');
+						if (unitPriceText.includes("$")) unitPriceText = unitPriceText.substring(unitPriceText.indexOf("$"), unitPriceText.length); 
+							else unitPriceText = "$" + unitPriceText;
+							if (unitPriceText.includes(".")) unitPriceText = unitPriceText.substring(0, unitPriceText.indexOf(".") + 3);
+
+						let unitPrice = document.createElement('p');
+						unitPrice.innerText = unitPriceText;
+						const unitPriceColumn = document.querySelector('#unitPriceColumn');
+						unitPriceColumn.appendChild(unitPrice);
+						
+						var p = document.createElement('p');
+						var a = document.createElement('a');
+						var linkText = document.createTextNode(title);
+						a.appendChild(linkText);
+						a.title = title;
+						a.href = items[j][3];
+						
+						p.appendChild(a);
+						
+						const titleColumn = document.querySelector('#titleColumn');
+						titleColumn.appendChild(p);
+						//titleColumn.appendChild(a);
+						//document.body.appendChild(a);
+						unitPriceText = unitPriceText.substring(1, unitPriceText.length);
+
+						totalPrice = totalPrice + parseFloat(unitPriceText) * parseFloat(quantityText);
+						if (j === items.length - 1) {
+							var totalPriceBox = document.createElement('h2');
+							totalPriceBox.innerText = "Total Price: " + totalPrice.toFixed(2);
+							unitPriceColumn.appendChild(totalPriceBox);
+						}
+						
 					}
+
 				}
 			});
 			i = i + 1;
@@ -49,7 +116,13 @@
 			nextProduct(1, cartSize);
 
 		});
+/*
+	var submitButton = document.getElementById('submitButton');
+	submitButton.addEventListener('click', function() {
+		console.log('click');
+	});
 
+*/
 
 		//var items = ["item1", "item2", "item3", "item4"]; //items (change to stored data)
 		/*
@@ -84,14 +157,14 @@
 
 		*/
 	} //makeList()
-	document.getElementById("makeList").onclick = makeList;
-
+	//document.getElementById("makeList").onclick = makeList;
+/*
 	  //buttons for each cart (to avoid pop-up blocker)
       document.getElementById("amazonCart").onclick = function () {
 			window.open("https://www.amazon.com/gp/cart/view.html?ref_=nav_cart");
       };
 
-document.getElementById('walmartCart").onclick = function() {
+document.getElementById('walmartCart').onclick = function() {
 	window.open("https://www.walmart.com/cart");
 };
 
@@ -102,3 +175,5 @@ document.getElementById('walmartCart").onclick = function() {
 document.getElementById("ebayCart").onclick = function() {
 	window.open("https://cart.ebay.com/");
 };
+
+*/
