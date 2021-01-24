@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ChromeCart</title>
-    <script src="popup.js"></script>
-    <script src="testInject.js"></script>
+    <title>ChromeCart</title>    
+	<script src="testInject.js"></script>
     <link rel="stylesheet" href="/content.css" />
   </head>
   <body>
@@ -40,69 +39,13 @@
         <label for="link3"> 3</label><br /><br />
       </form>
       <div class="buttonPlacement">
-        <button onclick="edit()" id="edit">Edit cart</button>
+        <button type="button" id="editButton">Edit cart</button>
+		<!-- button for manually making list (maybe change this?) -->
+		<button type="button" id="makeList">Make List</button>
+		<script src="popup.js"></script>
+
       </div>
     </div>
-    <script>
-      function edit() {
-        console.log("peepeepoopoo");
-        var elements = document.getElementById("delete");
-
-        for (var i = 0, element; (element = elements[i++]); ) {
-          console.log(element);
-        }        
-		if (document.getElementById("edit").innerHTML === "Edit cart") {
-          document.getElementById("edit").innerHTML = "Delete Selected Items";
-          console.log(document.getElementById("edit").innerHTML);
-
-          for (var i = 0, element; (element = elements[i++]); ) {
-            element.disabled = false;
-          }
-        } else {
-          document.getElementById("edit").innerHTML = "Edit cart";
-          console.log(document.getElementById("edit").innerHTML);
-
-          for (var i = 0, element; (element = elements[i++]); ) {
-            element.disabled = true;
-          }
-          elements = deleter();
-        }
-      }
-
-      function deleter() {
-        var inputs = document.getElementsByTagName("input");
-        var labels = document.getElementsByTagName("label");
-        console.log(inputs.length);
-        for (var i = 0; i < inputs.length; i++) {
-          var inp = inputs[i];
-          var l = labels[i];
-          console.log(inp.checked);
-          if (inp.checked == true) {
-            inputs[i].parentNode.removeChild(inputs[i]);
-            labels[i].parentNode.removeChild(lables[i]);
-          }
-        }
-      }
-
-      document.getElementById("submit").onclick = function () {
-        var checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.id = "car";
-        checkbox.name = "interest";
-        checkbox.value = "car";
-
-        var label = document.createElement("label");
-        label.htmlFor = "car";
-        label.appendChild(document.createTextNode("Car"));
-
-        var br = document.createElement("br");
-
-        var container = document.getElementById("container");
-        container.appendChild(checkbox);
-        container.appendChild(label);
-        container.appendChild(br);
-      };
-    </script>
   </body>
 </html>
 
