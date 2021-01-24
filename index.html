@@ -1,5 +1,107 @@
+<!DOCTYPE html>
 <html>
-	<body>
-		<h1>ChromeCart</h1>
-	</body>
+  <head>
+    <title>ChromeCart</title>
+    <script src="popup.js"></script>
+    <script src="testInject.js"></script>
+    <link rel="stylesheet" href="/content.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>ChromeCart</h1>
+      <h3>Here is you cart:</h3>
+      <form action="delete" id="delete">
+        <input
+          type="checkbox"
+          id="item"
+          href="google.com"
+          name="link1"
+          value="item"
+          disabled="true"
+        />
+        <label for="link1"><a href="https://www.google.com/">1</a></label
+        ><br />
+        <input
+          type="checkbox"
+          id="item"
+          name="link2"
+          value="item"
+          disabled="true"
+        />
+        <label for="link2"> 2</label><br />
+        <input
+          type="checkbox"
+          id="item"
+          href="google.com"
+          name="link3"
+          value="item"
+          disabled="true"
+        />
+        <label for="link3"> 3</label><br /><br />
+      </form>
+      <div class="buttonPlacement">
+        <button onclick="edit()" id="edit">Edit cart</button>
+      </div>
+    </div>
+    <script>
+      function edit() {
+        console.log("peepeepoopoo");
+        for (var i = 0, element; (element = elements[i++]); ) {
+          console.log(element);
+        }
+        var elements = document.getElementById("delete");
+        if (document.getElementById("edit").innerHTML === "Edit cart") {
+          document.getElementById("edit").innerHTML = "Delete Selected Items";
+          console.log(document.getElementById("edit").innerHTML);
+
+          for (var i = 0, element; (element = elements[i++]); ) {
+            element.disabled = false;
+          }
+        } else {
+          document.getElementById("edit").innerHTML = "Edit cart";
+          console.log(document.getElementById("edit").innerHTML);
+
+          for (var i = 0, element; (element = elements[i++]); ) {
+            element.disabled = true;
+          }
+          elements = deleter();
+        }
+      }
+
+      function deleter() {
+        var inputs = document.getElementsByTagName("input");
+        var labels = document.getElementsByTagName("label");
+        console.log(inputs.length);
+        for (var i = 0; i < inputs.length; i++) {
+          var inp = inputs[i];
+          var l = labels[i];
+          console.log(inp.checked);
+          if (inp.checked == true) {
+            inputs[i].parentNode.removeChild(inputs[i]);
+            labels[i].parentNode.removeChild(lables[i]);
+          }
+        }
+      }
+
+      document.getElementById("submit").onclick = function () {
+        var checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.id = "car";
+        checkbox.name = "interest";
+        checkbox.value = "car";
+
+        var label = document.createElement("label");
+        label.htmlFor = "car";
+        label.appendChild(document.createTextNode("Car"));
+
+        var br = document.createElement("br");
+
+        var container = document.getElementById("container");
+        container.appendChild(checkbox);
+        container.appendChild(label);
+        container.appendChild(br);
+      };
+    </script>
+  </body>
 </html>
+
