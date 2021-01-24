@@ -101,6 +101,30 @@ function makeList() {
 							var totalPriceBox = document.createElement('h2');
 							totalPriceBox.innerText = "Total Price: " + totalPrice.toFixed(2);
 							unitPriceColumn.appendChild(totalPriceBox);
+
+							var submitButton = document.createElement('button');
+							submitButton.innerText = "Checkout";
+							titleColumn.appendChild(submitButton);
+
+							submitButton.addEventListener('click', function() {
+								chrome.storage.sync.clear();
+								//chrome.tabs.create('https://www.google.com');
+								//chrome.tabs.create('https://www.amazon.com');
+								let amazonLink = document.createElement('a');
+								amazonLink.href = 'https://www.google.com';
+								amazonLink.target = '_blank';
+								amazonLink.click();
+
+								let ebayLink = document.createElement('a');
+								ebayLink.href = 'https://www.cart.ebay.com';
+								ebayLink.target = '_blank';
+								ebayLink.click();
+
+								let walmartLink = document.createElement('a');
+								walmartLink.href = 'https://www.walmart.com/cart';
+								walmartLink.targe = '_blank';
+								walmartLink.click();
+							});
 						}
 						
 					}
