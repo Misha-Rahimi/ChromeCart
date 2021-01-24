@@ -9,7 +9,7 @@ if (amazonButton !== null) {
 		var price = document.getElementById("price_inside_buybox").innerText;
 		var quantity = document.getElementsByClassName("a-dropdown-prompt")[0].innerText;
 		var productTitle = document.getElementById("productTitle").innerText;
-		alert("You added " + quantity + " of the item " + productTitle + " that cost " + price + " each to your ChromeCart");
+	//	alert("You added " + quantity + " of the item " + productTitle + " that cost " + price + " each to your ChromeCart");
 		//difAddProduct(quantity, price, productTitle);
 		addProduct(quantity, price, productTitle, getListingUrl());
 	}, false);
@@ -30,7 +30,8 @@ if (ebayButton !== undefined) {
 		var itemTitle = document.getElementsByClassName("it-ttl")[0].innerText;
 		var price = document.getElementById("prcIsum").innerText;
 		var quantity = document.getElementById("qtyTextBox").value;
-		alert("added " + quantity + " items of " + itemTitle + " on ebay for " + price + " each");
+		addProduct(quantity, price, itemTitle, getListingUrl());
+		//alert("added " + quantity + " items of " + itemTitle + " on ebay for " + price + " each");
 	}, false);
 }
 
@@ -46,28 +47,28 @@ for (var i = 0; i < allMacysElements.length; i++) {
 	//if (buttonText.includes("add")) alert("yes add"); else alert("no add");
 	if (buttonText.includes('bag') && buttonText.includes('add')) {
 		macysButton = allMacysElements[i];
-		alert("in if");
+		//alert("in if");
 		break;
 	}
 }
 
 if (macysButton !== undefined) {
-	alert("button defined");
+	//alert("button defined");
 var price = document.getElementsByClassName("price")[0];
 	//TODO: move this stuff back under the event listener after we figure out the issue	
-	alert("price good");
+	//alert("price good");
 		var salePrice = document.getElementsByClassName("medium-font bold on-sale");
-		alert("sale price seen");
+		//alert("sale price seen");
 		if (salePrice !== null) price = salePrice[0].innerText;
-		alert("past if");
+		//alert("past if");
 		var quantity = document.getElementsByClassName("qty-val")[0].innerText;
-		alert("quantity good");
+		//alert("quantity good");
 		var productTitle = document.getElementsByClassName("p-name h3")[0].innerText;
-		alert("title good");
+		//alert("title good");
 alert("you have added " + quantity + " items of the product " + productTitle + " for a price of " + price + " each");
 
 	macysButton.addEventListener('click', function() {
-		alert("inside action listener");
+		//alert("inside action listener");
 		
 
 		
@@ -82,13 +83,14 @@ if (walmartButton !== undefined) {
 	walmartButton.addEventListener("click", function() {
 		var price = document.getElementsByClassName("price display-inline-block arrange-fit price price--stylized")[0].innerText;
 		var name = document.getElementsByClassName("prod-ProductTitle prod-productTitle-buyBox font-bold")[0].innerText;
-		alert("You added " + name + " that costs " + price + " to your ChromeCart");
+		//alert("You added " + name + " that costs " + price + " to your ChromeCart");
+		addProduct("1", price, name, getListingUrl());
 	}, false);
 }
 
 //clearCart();
 function getListingUrl() {
-	alert("asked for url");
+	//alert("asked for url");
 	return window.location.href;
 	/*
 	var url;
@@ -211,14 +213,14 @@ function clearCart() {
 
 var allProductsKey = 'allProductsKey';
 var allProductsValue = [];
-if (allProductsValue === null) alert("true");
+ //alert("true");
 function initializeCart() {
 	var checkCartSizeKey = 'cartSizeKey';
 	var value = 0;
 	chrome.storage.sync.get([checkCartSizeKey], function(result) {
 		if (result[checkCartSizeKey] === undefined) {
 			chrome.storage.sync.set({[checkCartSizeKey]: value}, function() {
-				alert("initialized cart size");
+				//alert("initialized cart size");
 			});
 		}
 	});
@@ -236,7 +238,7 @@ function addProduct(quantity, price, productTitle, url) {
 	
 	chrome.storage.sync.get([cartSizeKey], function(cartSizeResult) {
 		//productKey is onre more than original cartSize
-		alert("adding one to " + cartSizeResult[cartSizeKey]);
+		//alert("adding one to " + cartSizeResult[cartSizeKey]);
 		var productKey = cartSizeResult[cartSizeKey] + 1;
 
 		/*
@@ -251,35 +253,15 @@ function addProduct(quantity, price, productTitle, url) {
 		*/
 
 		chrome.storage.sync.set({[productKey]: productInfo}, function() {
-			alert("Key: " + productKey + " plus the value");
+		//	alert("Key: " + productKey + " plus the value");
 			
 			chrome.storage.sync.set({[cartSizeKey]: productKey}, function() {
-				alert("set cartsize to " + productKey);
+		//		alert("set cartsize to " + productKey);
 			});
 		});
 	});
 }
-
-function difAddProduct(quantity, price, productTitle) {
-	alert("dif called");
-	var productInfo = [quantity, price, productTitle];
-	var newProductAdd = [];
-	chrome.storage.sync.get([allProductsKey], function(response) {
-		alert("into dif get");
-		//var newValue = response[allProductsKey].push(productInfo);
-		alert(response[allProductsKey]);
-		newProductAdd = response[allProductsKey].push("value2");
-		alert('lengt ' + newProductAdd);
-
-		chrome.storage.sync.set({[allProductsKey]: newProductAdd}, function() {
-			alert("current products list size " + newProductAdd.length);
-		});
-	});
-}
-
-
-
-//Respond to request from popup with all items in shopping cart
+//pond to request from popup with all items in shopping cart
 
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {

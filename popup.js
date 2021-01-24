@@ -116,7 +116,7 @@ function makeList() {
 								amazonLink.click();
 
 								let ebayLink = document.createElement('a');
-								ebayLink.href = 'https://www.cart.ebay.com';
+								ebayLink.href = 'cart.ebay.com';
 								ebayLink.target = '_blank';
 								ebayLink.click();
 
