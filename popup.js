@@ -1,15 +1,15 @@
-		function makeList() {
-			console.log("gonna make a list");
-			var items = ["item1", "item2", "item3", "item4"]; //items (change to stored data)
-			
-			// loops through each item, creating an element
-			for (var i = 0; i < items.length; i++) {
-				var btn = document.createElement("h3");
-				btn.innerHTML = items[i];
-				document.body.appendChild(btn);
-			} //for
-		} //makeList()
-		document.getElementById("makeList").onclick = makeList;
+	function makeList() {
+		console.log("gonna make a list");
+		var items = ["item1", "item2", "item3", "item4"]; //items (change to stored data)
+		
+		// loops through each item, creating an element
+		for (var i = 0; i < items.length; i++) {				
+			var btn = document.createElement("h3");
+			btn.innerHTML = items[i];
+			document.body.appendChild(btn);
+		} //for
+	} //makeList()
+	document.getElementById("makeList").onclick = makeList;
 
 
 		function edit() {
