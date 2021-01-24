@@ -22,22 +22,20 @@ Person 1: For whatever site that they are on, we have added an action listener
 Person 2: To view their cart, the user simply presses the plugin in the top
         right hand corner of their chrome browser. By doing this, they will
         see all of the important information about the product.
-Person 3: Should the user choose to delete this item from their cumulative cart,
-        they simply press the edit button and delete the item.
-Person 1: The user is also able to quickly view each item on the list by simply
+Person 3: The user is also able to quickly view each item on the list by simply
         clicking on the name of the product.
 ---END DEMO---
-Person 2: While we have the basic functionality of ChromeCart set up, there
+Person 1: While we have the basic functionality of ChromeCart set up, there
         are some improvements that we have in mind. Firstly, our extension
         works with several major sites, but we want ChromeCart to be usable
         on every single online store. To do this, we would need to work on
         the generalization of finding the "add to cart button" as each site
         has a different way of storing the button information.
-Person 3: In addition to this, we would also like to add a feature which
+Person 2: In addition to this, we would also like to add a feature which
         helps the user with the financial aspect. We'd like to add some 
         sort of budget feature which notifies the user once they've gone over
         their established budget.
-Person 1: Thanks for watching.
+Person 3: Thanks for watching.
 
 
 
