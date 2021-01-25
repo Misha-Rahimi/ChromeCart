@@ -7,17 +7,16 @@ submitButton.addEventListner('click', function() {
 }
 //else alert("button messed up");
 */
-makeList();
 
-function makeList() {
-		
-	console.log("gonna make a list");
+
+
+console.log("gonna make a list");
 	var key = "cartSizeKey";
 	var totalPrice = 0;		
 	var items = [];
-	
-	var platforms = [];		
-	function nextProduct(i, cartSize) {
+var platforms = [];
+
+function nextProduct(i, cartSize) {
 		console.log("enter next product with i equal to " + i);
 		var productKey = i + "";
 		chrome.storage.sync.get([productKey], function(productResponse) {
@@ -174,12 +173,12 @@ function makeList() {
 		
 	}
 
-	
-	chrome.storage.sync.get([key], function(response) {
+chrome.storage.sync.get([key], function(response) {
 	
 		var cartSize = response[key];
 		
-		if (cartSize == 0) {
+		//if (cartSize == 0) {
+			/*console.log("no items in cart");
 			var message = document.createElement('h3');
 			message.innerText = 'Your items will appear below once you add them';
 			const messageHolder = document.querySelector('#messageHolder');
@@ -195,9 +194,32 @@ function makeList() {
 			document.getElementById('quantityColumn').style.visibility = 'hidden';
 			document.getElementById('unitPriceColumn').style.visibility = 'hidden';
 			*/
-		} else nextProduct(1, cartSize);
+		//} else {
+		console.log('cart size is ' + cartSize);
+		if (cartSize === undefined || cartSize === 0) {
+			//document.getElementById('emptyCartMessage').style.visibility = 'hidden';
+			document.getElementById('titleColumn').style.visibility = 'hidden';
+			document.getElementById('platformColumn').style.visibility = 'hidden'
+			document.getElementById('quantityColumn').style.visibility = 'hidden'
+			document.getElementById('unitPriceColumn').style.visibility = 'hidden';
+			//document.getElementById('emptyCartMessage').style.visibility = 'hidden';
+			console.log('if entered');
+			//nextProduct(1, cartSize);
+
+			var emptyCartMessage = document.createElement('h3');
+			emptyCartMessage.innerText = 'You will see your items below once you add them!';
+			const emptyCartMessageHolder = document.querySelector('#emptyCartMessageHolder');
+			emptyCartMessageHolder.appendChild(emptyCartMessage);
+
+		} else {
+			console.log('else entered');
+			//document.getElementById('emptyCartMessage').style.visibility = 'hidden';
+			nextProduct(1, cartSize);
+		}
+
+		
+
 		
 		
 	});
-}
 
