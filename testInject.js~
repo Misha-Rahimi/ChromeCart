@@ -1,5 +1,5 @@
 //Handling for Amazon
-
+//clearCart();
 //alert("at the top");
 initializeCart();
 
@@ -29,7 +29,7 @@ if (ebayButton !== undefined) {
 	ebayButton.addEventListener("click", function() {
 		var itemTitle = document.getElementsByClassName("it-ttl")[0].innerText;
 		var price = document.getElementById("prcIsum").innerText;
-		var quantity = document.getElementById("qtyTextBox").value;
+		var quantity = document.getElementById("qtyTextBox").value
 		addProduct(quantity, price, itemTitle, getListingUrl());
 		//alert("added " + quantity + " items of " + itemTitle + " on ebay for " + price + " each");
 	}, false);
@@ -42,7 +42,7 @@ var macysButton;
 
 for (var i = 0; i < allMacysElements.length; i++) {
 	var buttonText = allMacysElements[i].innerText.toLowerCase();
-	alert(buttonText);
+	//alert(buttonText);
 	//if (buttonText.includes("bag")) alert("yes bag"); else alert("no bag");
 	//if (buttonText.includes("add")) alert("yes add"); else alert("no add");
 	if (buttonText.includes('bag') && buttonText.includes('add')) {
@@ -53,6 +53,7 @@ for (var i = 0; i < allMacysElements.length; i++) {
 }
 
 if (macysButton !== undefined) {
+	/*
 	//alert("button defined");
 var price = document.getElementsByClassName("price")[0];
 	//TODO: move this stuff back under the event listener after we figure out the issue	
@@ -67,11 +68,17 @@ var price = document.getElementsByClassName("price")[0];
 		//alert("title good");
 alert("you have added " + quantity + " items of the product " + productTitle + " for a price of " + price + " each");
 
+*/
 	macysButton.addEventListener('click', function() {
-		//alert("inside action listener");
-		
-
-		
+		alert("inside action listener");
+		var price = document.getElementsByClassName('price')[0].innerText.replace(/\s+/g, '');
+		var salePrice = document.getElementsByClassName("medium-font bold on-sale");
+		alert(salePrice[0]);
+		if (salePrice !== null && salePrice[0] !== undefined) price = salePrice[0].innerText;
+		alert(price);
+		var quantity = document.getElementsByClassName('qty-val')[0].innerText;
+		var productTitle = document.getElementsByClassName('p-name h3')[0].innerText;
+		addProduct(quantity, price, productTitle, getListingUrl());		
 	}, false);
 }
 
@@ -233,35 +240,31 @@ function initializeCart() {
 }
 
 function addProduct(quantity, price, productTitle, url) {
+	alert("Adding " + quantity + " item(s), each costing " + price + " of item " + productTitle);
 	var cartSizeKey = 'cartSizeKey';
 	var productInfo = [quantity, price, productTitle, url];
-	
+	alert("adding list " + productInfo);	
 	chrome.storage.sync.get([cartSizeKey], function(cartSizeResult) {
 		//productKey is onre more than original cartSize
 		//alert("adding one to " + cartSizeResult[cartSizeKey]);
-		var productKey = cartSizeResult[cartSizeKey] + 1;
 
-		/*
-		//change the size of the cart
-		chrome.storage.sync.set({[cartSizeKey]: productKey}, function() {	
-			alert("set cartsize to " + productKey);
-			//add the item
-			chrome.storage.sync.set({[cartSizeKey]: productKey}, function() {
-				alert("New Key: " + productKey + " Value: ");
-			});
-		});
-		*/
+		var productKey = cartSizeResult[cartSizeKey] + 1;
+		alert("new cart size: " + productKey);
 
 		chrome.storage.sync.set({[productKey]: productInfo}, function() {
-		//	alert("Key: " + productKey + " plus the value");
-			
 			chrome.storage.sync.set({[cartSizeKey]: productKey}, function() {
-		//		alert("set cartsize to " + productKey);
+			
 			});
 		});
 	});
 }
-//pond to request from popup with all items in shopping cart
+
+//clearCart();
+/*
+var checkProductKey = '1';
+chrome.storage.sync.get([checkProductKey], function(result) {
+	alert("check first product " + result[checkProductKey]);
+});
 
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
@@ -272,4 +275,5 @@ chrome.runtime.onMessage.addListener(
       sendResponse({farewell: "goodbye"});
   }
 );
+*/
 

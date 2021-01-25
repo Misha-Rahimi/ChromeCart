@@ -1,6 +1,6 @@
 body {
-	background-color: #CFD9FA !important;
-	min-width: 400px;
+	background-color: #CFE1FF !important;
+	min-width: 500px;
 	max-width: 100%;
 	
 }
