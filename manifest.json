@@ -6,7 +6,7 @@
 	"browser_action": {
 		"default_popup": "./index.html",
 		"default_title": "Open the popup",
-		"default_icon": "./defaultIcon.jpg"
+		"default_icon": "./defaultIcon.png"
 	},
 	"content_scripts": [
 		{

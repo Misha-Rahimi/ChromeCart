@@ -179,8 +179,24 @@ function makeList() {
 	
 		var cartSize = response[key];
 		
-		nextProduct(1, cartSize);
+		if (cartSize == 0) {
+			var message = document.createElement('h3');
+			message.innerText = 'Your items will appear below once you add them';
+			const messageHolder = document.querySelector('#messageHolder');
+			messageHolder.appendChild(message);
 
+			var tableHeaders = document.getElementsByClassName('row');
+			for (var i = 0; i < tableHeaders.length; i++) {
+				tableHeaders[i].style.visibility = 'hidden';
+			}
+			/*
+			document.getElementById('titleColumn').style.visibility = 'hidden';
+			document.getElementById('platformColumn').style.visibility = 'hidden';
+			document.getElementById('quantityColumn').style.visibility = 'hidden';
+			document.getElementById('unitPriceColumn').style.visibility = 'hidden';
+			*/
+		} else nextProduct(1, cartSize);
+		
 		
 	});
 }
