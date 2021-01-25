@@ -92,31 +92,45 @@ function makeList() {
 								//chrome.tabs.create('https://www.amazon.com');
 								
 							if (platforms.includes('Macys')) {
+								/*
 								let macysLink = document.createElement('a');
 								macysLink.href = 'https://www.macys.com/my-bag';
 								macysLink.target = '_blank';
 								macysLink.click();
-								//window.open('https://www.macys.com/my-bag');							
+								//window.open('https://www.macys.com/my-bag');	
+								*/
+								var newUrl = 'https://www.macys.com/my-bag';
+								chrome.tabs.create({ url: newUrl });
 							}
 
 							if (platforms.includes('Amazon')) {							
 								//alert('amazon');								
-								window.open('https://www.amazon.com/gp/cart/view.html?ref_=nav_cart');
+								//window.open('https://www.amazon.com/gp/cart/view.html?ref_=nav_cart');
+								var newUrl = 'https://www.amazon.com/gp/cart/view.html?ref_=nav_cart';
+								chrome.tabs.create({ url: newUrl });
 							}
 
-							if (platforms.includes('Ebay')) {							
+							if (platforms.includes('Ebay')) {
+								/*
 								let ebayLink = document.createElement('a');								
 								ebayLink.href = 'https://cart.ebay.com';								
 								ebayLink.target = '_blank';
 								ebayLink.click();
+								*/
+								var newUrl = 'https://cart.ebay.com';
+								chrome.tabs.create({ url: newUrl });
 							}
 
 							
-							if (platforms.includes('Walmart')) {							
+							if (platforms.includes('Walmart')) {	
+								var newUrl = 'https://www.walmart.com/cart';
+								chrome.tabs.create({ url: newUrl });
+								/*
 								let walmartLink = document.createElement('a');								
 								walmartLink.href = 'https://www.walmart.com/cart';								
 								walmartLink.target = '_blank';								
 								walmartLink.click();								
+								*/
 							}
 									/*
 								if (platforms.includes('Ebay')) {
