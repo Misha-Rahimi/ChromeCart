@@ -86,7 +86,10 @@ alert("you have added " + quantity + " items of the product " + productTitle + "
 
 //Walmart
 var walmartButton = document.getElementsByClassName("spin-button-children")[0];
+
 if (walmartButton !== undefined) {
+	var optionElements = document.getElementsByClassName('option');
+	alert(optionElements.length);
 	walmartButton.addEventListener("click", function() {
 		var price = document.getElementsByClassName("price display-inline-block arrange-fit price price--stylized")[0].innerText;
 		var name = document.getElementsByClassName("prod-ProductTitle prod-productTitle-buyBox font-bold")[0].innerText;
