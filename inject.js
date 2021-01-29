@@ -6,20 +6,23 @@ initializeCart();
 var amazonButton = document.getElementById("add-to-cart-button");
 if (amazonButton !== null) {
 	amazonButton.addEventListener("click", function() {
-		//Extract price of item
-		var priceElement = document.getElementById('price_inside_buybox');
-		var price;
-		if (priceElement !== null) price = priceElement.innerText;
-		else price = document.getElementById('priceblock_ourprice').innerText;
+		var popupElement = document.getElementsByClassName('a-popover a-popover-modal a-declarative');
+		if (popupElement.length === 0) {
+			//Extract price of item
+			var priceElement = document.getElementById('price_inside_buybox');
+			var price;
+			if (priceElement !== null) price = priceElement.innerText;
+			else price = document.getElementById('priceblock_ourprice').innerText;
 
-		//Extract quantity
-		var quantity = document.getElementsByClassName("a-dropdown-prompt")[0].innerText;
+			//Extract quantity
+			var quantity = document.getElementsByClassName("a-dropdown-prompt")[0].innerText;
 
-		//Extract title of product
-		var productTitle = document.getElementById("productTitle").innerText.trim();
+			//Extract title of product
+			var productTitle = document.getElementById("productTitle").innerText.trim();
 
-		//Add the product to ChromeCart
-		addProduct(quantity, cleanPrice(price), productTitle, getListingUrl());
+			//Add the product to ChromeCart
+			addProduct(quantity, cleanPrice(price), productTitle, getListingUrl());
+		}
 	}, false);
 }
 
