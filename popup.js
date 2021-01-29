@@ -70,7 +70,8 @@ function nextProduct(i, cartSize) {
 				var linkText = document.createTextNode(title);					
 				a.appendChild(linkText);					
 				a.title = title;					
-				a.href = items[j][3];					
+				a.href = items[j][3];
+				a.target = "_blank";
 				p.appendChild(a);
 				const titleColumn = document.querySelector('#titleColumn');					
 				titleColumn.appendChild(p);	
