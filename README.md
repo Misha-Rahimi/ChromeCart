@@ -17,7 +17,8 @@ As shown above, the popup will display every item the user has added with a link
 If the user is content and would like to purchase their items, they can click the "Checkout" button. This will open the shopping cart of each site the user added items from, where they can complete their transactions.
 
 ## How to Run This Program
-Once we publish this extension, we'll add the link here
+Once we publish this extension, we'll add the link here.
+
 You can run this extension now by doing the following:
 * Cloning this repository
 * Going to [managing extensions](chrome://extensions/) in Google Chrome
