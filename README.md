@@ -6,7 +6,7 @@ This Chrome extension allows a user to add items from multiple online shopping s
 
 If a user wants to add an item from a site to their ChromeCart, they can simply press the "Add to Cart" button from the original site and their item will be added to their ChromeCart! For instance, a user finds the item below and wants to add it to their ChromeCart. After pressing on the "Add to Cart" button, they will then see a popup displaying basic info of what they've just added.
 
-<img src = ![](SampleImages/AddedItemOnSite.jpg width="3706" height="1846")>
+![](SampleImages/AddedItemOnSite.jpg)
 
 They can then repeat this process on any of our supported sites (Amazon, Ebay, Macy's, and Walmart), adding as many items as they'd like. After they've added all the items they want, or if they would like to see what they've added so far, they can simply click on our extension and see the below popup.
 
