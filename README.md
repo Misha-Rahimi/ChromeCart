@@ -18,11 +18,11 @@ If the user is content and would like to purchase their items, they can click th
 
 ## Known Bugs
 We are aware of a few bugs that we are working to correct:
-*We are currently unable to extract the "quantity" of an item added from Walmart. The quantity of any item added from Walmart will be 1.
-*On some Amazon listings, after adding an item to the cart, a popup will be displayed asking the user if they want to add a protection plan. If the user exits out of this popup, the item gets added to their ChromeCart again
+* We are currently unable to extract the "quantity" of an item added from Walmart. The quantity of any item added from Walmart will be 1.
+* On some Amazon listings, after adding an item to the cart, a popup will be displayed asking the user if they want to add a protection plan. If the user exits out of this popup, the item gets added to their ChromeCart again
 
 ## Future Improvements
 Here are some features we'd like to implement in the future:
-*Editing the Cart- We'd like to give user's the option to delete items or edit the quantity of items on both their ChromeCart and the shopping cart of the site the item was originally added form
-*Adding Support for more Sites- Instead of supporting only four sites, we'd like user's to be able to add an item from any online retail site
-*View Cart History- We'd like to save all the ChromeCarts user's have checked out and allow user's to view their cart history
+* Editing the Cart- We'd like to give user's the option to delete items or edit the quantity of items on both their ChromeCart and the shopping cart of the site the item was originally added form
+* Adding Support for more Sites- Instead of supporting only four sites, we'd like user's to be able to add an item from any online retail site
+* View Cart History- We'd like to save all the ChromeCarts user's have checked out and allow user's to view their cart history
