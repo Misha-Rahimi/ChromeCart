@@ -111,11 +111,14 @@ if (walmartButton !== undefined) {
 		//Extract price of item
 		var price = document.getElementsByClassName("price display-inline-block arrange-fit price price--stylized")[0].innerText;
 
+		//Extract quantity of item
+		var quantity = document.getElementsByClassName('field-input field-input--secondary')[0].value;
+
 		//Extract title of product
 		var productTitle = document.getElementsByClassName("prod-ProductTitle prod-productTitle-buyBox font-bold")[0].innerText;
 		
 		//Add product to ChromeCart
-		addProduct("1", cleanPrice(price), productTitle, getListingUrl());
+		addProduct(quantity, cleanPrice(price), productTitle, getListingUrl());
 	}, false);
 }
 
