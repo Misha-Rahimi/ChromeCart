@@ -16,6 +16,17 @@ As shown above, the popup will display every item the user has added with a link
 
 If the user is content and would like to purchase their items, they can click the "Checkout" button. This will open the shopping cart of each site the user added items from, where they can complete their transactions.
 
+## How to Run This Program
+Once we publish this extension, we'll add the link here
+You can run this extension now by doing the following:
+* Cloning this repository
+* Going to [managing extensions](chrome://extensions/) in Google Chrome
+* Turn on "Developer Mode" in the top right
+* Click "load unpacked" in the top right
+* Click on the main folder for this cloned repository and click "Select Folder"
+* That's it! You're good to start adding items from our supported sites. You can view your current ChromeCart by pressing the shopping cart in the top right under extensions
+
+
 ## Known Bugs
 We are aware of a few bugs that we are working to correct:
 * We are currently unable to extract the "quantity" of an item added from Walmart. The quantity of any item added from Walmart will be 1.
