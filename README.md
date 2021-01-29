@@ -30,8 +30,7 @@ You can run this extension now by doing the following:
 
 ## Known Bugs
 We are aware of a few bugs that we are working to correct:
-* We are currently unable to extract the "quantity" of an item added from Walmart. The quantity of any item added from Walmart will be 1.
-* On some Amazon listings, after adding an item to the cart, a popup will be displayed asking the user if they want to add a protection plan. If the user exits out of this popup, the item gets added to their ChromeCart again
+* This extension only works if the page is fully loaded
 
 ## Future Improvements
 Here are some features we'd like to implement in the future:
