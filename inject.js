@@ -7,6 +7,8 @@ var amazonButton = document.getElementById("add-to-cart-button");
 if (amazonButton !== null) {
 	amazonButton.addEventListener("click", function() {
 		var popupElement = document.getElementsByClassName('a-popover a-popover-modal a-declarative');
+
+		//Clicked the regular add to cart button
 		if (popupElement.length === 0) {
 			//Extract price of item
 			var priceElement = document.getElementById('price_inside_buybox');
@@ -37,8 +39,6 @@ for (var i = 0; i < allEbayElements.length; i++) {
 	var buttonText = allEbayElements[i].innerText.toLowerCase();
 	if (buttonText.includes('cart') && buttonText.includes('add')) {
 		ebayButton = allEbayElements[i];
-		//alert(buttonText)
-		//ebayButton.innerText = 'click me';
 		break;
 	}
 }
