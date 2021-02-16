@@ -1,45 +1,28 @@
 var key = 'pastCartsKey';
 chrome.storage.sync.get([key], function(result) {
-    var pastCarts = result[key];
-    alert(pastCarts.length);
+    pastCarts = result[key].pastCarts;
     for (var i = 0; i < pastCarts.length; i++) {
-        var totalPrice = 0;
-        for (var j = 0; j < pastCarts[i].length; j++) {
-            var quantityText = pastCarts[i][j][0]
-            if (isNaN(quantityText)) quantityText = 1;
+        //Extract date submitted and total price of cart
+        var dateSubmitted = pastCarts[i].dateSubmitted;
+        var totalPrice = pastCarts[i].totalPrice;
 
-            var unitPriceText = pastCarts[i][j][1];
-            unitPriceText = unitPriceText.substring(1, unitPriceText.length).replace(/,/g, '');
-            totalPrice = totalPrice + parseFloat(unitPriceText) * parseFloat(quantityText);
-        }
-        //alert(totalPrice);
+        //Display date submitted
+        var dateSubmittedElement = document.createElement('h3');					
+		dateSubmittedElement.innerText = dateSubmitted;					
+		const dateSubmittedColumn = document.querySelector('#dateSubmittedColumn');				
+		dateSubmittedColumn.appendChild(dateSubmittedElement);
+
+        //Display total price of cart
+        var totalPriceElement = document.createElement('h3');					
+		totalPriceElement.innerText = totalPrice.toFixed(2).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");					
+		const totalPriceColumn = document.querySelector('#totalPriceColumn');				
+		totalPriceColumn.appendChild(totalPriceElement);
+
+        //Add button
+        var submitButton = document.createElement('button');
+        submitButton.style = 'margin:3px;'						
+		submitButton.innerText = "View Cart";
+        const submitButtonColumn = document.querySelector('#submitButtonColumn');
+        submitButtonColumn.append(submitButton);
     }
 });
-
-var testAllPastCarts = 
-{
-    "pastCarts": []
-}
-
-var testCart1 = 
-{
-    "dateSubmitted": "1.2.21",
-    "totalPrice": 11.23,
-    "items": []
-}
-
-var testItem = {
-    "title": "Axe",
-    "platform": "Amazon",
-    "price": 12
-}
-
-var tempArray = testCart1.items;
-tempArray.push(testItem);
-testCart1.items = tempArray;
-
-tempArray = testAllPastCarts.pastCarts;
-tempArray.push(testCart1);
-testAllPastCarts.pastCarts = tempArray;
-
-console.log(testAllPastCarts.pastCarts[0].items[0].title);
