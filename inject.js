@@ -125,6 +125,29 @@ if (walmartButton !== undefined) {
 	}, false);
 }
 
+function newAddProduct(quantity, price, productTitle, url) {
+	var key = 'currentCartKey';
+	quantity = parseInt(quantity);
+	if (isNaN(quantity)) quantity = 1;
+	var productInfo = [quantity, price, productTitle, url];
+
+	chrome.storage.sync.get([key], function(result) {
+		var currentCart = result[key];
+		currentCart.push(productInfo);
+
+		//Alert user to what's been added to cart
+		if (productTitle.length > 45) productTitle = productTitle.substring(0, 45) + '...';
+				
+		alert('You added the following: \nTitle: ' + productTitle 
+		+ '\nQty: ' + quantity 
+		+ '\nPrice: ' + price);
+
+		chrome.storage.sync.set({[key]: currentCart});
+	});
+
+}
+
+
 //Add product information to ChromeCart
 function addProduct(quantity, price, productTitle, url) {
 	var key = 'currentCartKey';
