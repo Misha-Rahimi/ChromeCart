@@ -1,9 +1,7 @@
 var key = 'currentCartKey';
 chrome.storage.sync.get([key], function(result) {
-	
-
 	//Either display current cart contents or message inviting user to add items
-	if (result[key].length === undefined || result[key].length == 0) {
+	if (result[key] === undefined || result[key].length === undefined || result[key].length == 0) {
 		//Hide all the elements besides the main title
 		document.getElementById('titleColumn').style.visibility = 'hidden';
 		document.getElementById('platformColumn').style.visibility = 'hidden'
@@ -19,9 +17,7 @@ chrome.storage.sync.get([key], function(result) {
 	else displayCurrentCart();
 });
 
-
-
-
+//Display all the items in the current cart of the user
 function displayCurrentCart() {
 	var key = 'currentCartKey';
 	var totalPrice = 0;
@@ -112,16 +108,19 @@ function displayCurrentCart() {
 				//Save new value of past carts
 				chrome.storage.sync.set({[pastCartsKey]: pastCarts}, function() {
 					alert('added to old cart')
+					
 					//Rest current cart
 					var blankArray = [];
 					chrome.storage.sync.set({[key]: blankArray}, function() {
 						alert('initialized current cart')
 						openPlatformCarts(platforms);
+
+						//Set cart size back to 0
+						var cartSizeKey = "cartSizeKey";
+						chrome.storage.sync.set({[cartSizeKey]: 0});
 					});
 				});
-			});
-			
-								
+			});								
 		});
 	});
 }

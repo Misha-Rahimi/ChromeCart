@@ -12,6 +12,34 @@ chrome.storage.sync.get([key], function(result) {
             unitPriceText = unitPriceText.substring(1, unitPriceText.length).replace(/,/g, '');
             totalPrice = totalPrice + parseFloat(unitPriceText) * parseFloat(quantityText);
         }
-        alert(totalPrice);
+        //alert(totalPrice);
     }
 });
+
+var testAllPastCarts = 
+{
+    "pastCarts": []
+}
+
+var testCart1 = 
+{
+    "dateSubmitted": "1.2.21",
+    "totalPrice": 11.23,
+    "items": []
+}
+
+var testItem = {
+    "title": "Axe",
+    "platform": "Amazon",
+    "price": 12
+}
+
+var tempArray = testCart1.items;
+tempArray.push(testItem);
+testCart1.items = tempArray;
+
+tempArray = testAllPastCarts.pastCarts;
+tempArray.push(testCart1);
+testAllPastCarts.pastCarts = tempArray;
+
+console.log(testAllPastCarts.pastCarts[0].items[0].title);

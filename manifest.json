@@ -1,5 +1,5 @@
 {
-	"name": "My plugin",
+	"name": "ChromeCart",
 	"version": "0.0.1",
 	"description": "Have one cart for items from multiple online stores",
 	"manifest_version": 2,

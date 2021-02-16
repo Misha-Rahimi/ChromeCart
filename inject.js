@@ -24,7 +24,6 @@ if (amazonButton !== null) {
 
 			//Add the product to ChromeCart
 			addProduct(quantity, cleanPrice(price), productTitle, getListingUrl());
-			newAddProduct(quantity, cleanPrice(price), productTitle, getListingUrl());
 		}
 	}, false);
 }
@@ -126,37 +125,27 @@ if (walmartButton !== undefined) {
 	}, false);
 }
 
-
-//Saves the product info added to ChromeCart to chrome storage
+//Add product information to ChromeCart
 function addProduct(quantity, price, productTitle, url) {
-	var key = 'cartSizeKey';
-
-	//If quantity wasn't read from website correctly, set quantity to 1
+	var key = 'currentCartKey';
 	quantity = parseInt(quantity);
 	if (isNaN(quantity)) quantity = 1;
-
-	//The info about the product added to the cart that will be saved
 	var productInfo = [quantity, price, productTitle, url];
 
-	//First get number of items in the cart
-	chrome.storage.sync.get([key], function(cartSizeResult) {
-		//Set the key for the item being added to the cart to the current size of the cart plus one
-		var productKey = cartSizeResult[key] + 1;
+	chrome.storage.sync.get([key], function(result) {
+		var currentCart = result[key];
+		currentCart.push(productInfo);
 
-		//Save the array productInfo with the productKey
-		chrome.storage.sync.set({[productKey]: productInfo}, function() {
-			//Increased the saved cart size by one
-			chrome.storage.sync.set({[key]: productKey}, function() {
-				//Alert user to what's been added to cart
-				if (productTitle.length > 45) productTitle = productTitle.substring(0, 45) + '...';
+		//Alert user to what's been added to cart
+		if (productTitle.length > 45) productTitle = productTitle.substring(0, 45) + '...';
 				
-				alert('You added the following: \nTitle: ' + productTitle 
-				+ '\nQty: ' + quantity 
-				+ '\nPrice: ' + price 
-				+ '\nCurrent ChromeCart Size: ' + productKey);
-			});
-		});
+		alert('You added the following: \nTitle: ' + productTitle 
+		+ '\nQty: ' + quantity 
+		+ '\nPrice: ' + price);
+
+		chrome.storage.sync.set({[key]: currentCart});
 	});
+
 }
 
 //testGet();
@@ -170,22 +159,6 @@ function testGet() {
 		for (var i = 0; i < result[key].length; i++) alert(result[key][i]);
 	});
 }
-
-//testSet('4', '4', 'fourth', 'www');
-function newAddProduct(quantity, price, productTitle, url) {
-	var key = 'currentCartKey';
-	var productInfo = [quantity, price, productTitle, url];
-
-	chrome.storage.sync.get([key], function(result) {
-		var currentCart = result[key];
-		currentCart.push(productInfo);
-		
-		chrome.storage.sync.set({[key]: currentCart});
-	});
-
-}
-
-
 
 //If it is the user's first time with the extension, the current size of the cart must be initialized chrome storage
 function initializeCart() {
