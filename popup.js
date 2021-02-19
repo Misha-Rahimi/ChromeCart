@@ -22,6 +22,7 @@ chrome.storage.sync.get([key], function(result) {
 function displayCurrentCart(items) {
 	var key = 'currentCartKey';
 	var totalPrice = 0;
+	var totalQuantity = 0;
 	var platforms = [];
 
 	chrome.storage.sync.get([key], function(result) {
@@ -36,7 +37,8 @@ function displayCurrentCart(items) {
 			let quantity = document.createElement('p');
 			quantity.innerText = quantityText;
 			const quantityColumn = document.querySelector('#quantityColumn');
-			quantityColumn.appendChild(quantity);	
+			quantityColumn.appendChild(quantity);
+			totalQuantity += quantityText;
 
 			//Display the unit price of the item
 			var unitPriceText = items[j].price;
@@ -54,7 +56,7 @@ function displayCurrentCart(items) {
 			var title = items[j].productTitle;
 			//Remove potential extra words and shorten to fit on popup if needed
 			if (title.includes("Details about")) title = title.substring(16, title.length);
-			if (title.length > 30) title = title.substring(0, 30) + "...";
+			if (title.length > 35) title = title.substring(0, 35) + "...";
 
 			var p = document.createElement('p');					
 			var a = document.createElement('a');					
@@ -82,9 +84,14 @@ function displayCurrentCart(items) {
 		}
 
 		//All the items have been added, so display the total price		
-		var totalPriceBox = document.createElement('h2');						
+		var totalPriceBox = document.createElement('h3');						
 		totalPriceBox.innerText = "Total Price: $" + totalPrice.toFixed(2).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");						
 		unitPriceColumn.appendChild(totalPriceBox);
+
+		//Display total quantity
+		var totalQuantityElment = document.createElement('h3');
+		totalQuantityElment.innerText = "Cart Size: " + totalQuantity;
+		quantityColumn.appendChild(totalQuantityElment);
 			
 		/*When the submit button is clicked, clear all the items from the memory, then open the carts for the websites the user
 		added items from (Amazon, Ebay, Walmart, Macy's) */
@@ -120,6 +127,7 @@ function displayCurrentCart(items) {
 				var newCart = {
 					'cart': items,
 					'totalPrice': totalPrice,
+					'cartSize': totalQuantity,
 					'dateSubmitted': today
 				}
 

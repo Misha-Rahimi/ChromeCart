@@ -5,6 +5,7 @@ chrome.storage.sync.get([key], function(result) {
         //Extract date submitted and total price of cart
         var dateSubmitted = pastCarts[i].dateSubmitted;
         var totalPrice = pastCarts[i].totalPrice;
+        var cartSize = pastCarts[i].cartSize;
 
         //Display date submitted
         var dateSubmittedElement = document.createElement('h3');					
@@ -12,9 +13,15 @@ chrome.storage.sync.get([key], function(result) {
 		const dateSubmittedColumn = document.querySelector('#dateSubmittedColumn');				
 		dateSubmittedColumn.appendChild(dateSubmittedElement);
 
+        //Display cart size
+        var cartSizeEleemnt = document.createElement('h3');					
+		cartSizeEleemnt.innerText = cartSize;					
+		const cartSizeColumn = document.querySelector('#cartSizeColumn');				
+		cartSizeColumn.appendChild(cartSizeEleemnt);
+
         //Display total price of cart
         var totalPriceElement = document.createElement('h3');					
-		totalPriceElement.innerText = totalPrice.toFixed(2).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");					
+		totalPriceElement.innerText = "$" + totalPrice.toFixed(2).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");					
 		const totalPriceColumn = document.querySelector('#totalPriceColumn');				
 		totalPriceColumn.appendChild(totalPriceElement);
 
