@@ -125,66 +125,59 @@ if (walmartButton !== undefined) {
 	}, false);
 }
 
-//Add product information to ChromeCart
 function addProduct(quantity, price, productTitle, url) {
 	var key = 'currentCartKey';
 	quantity = parseInt(quantity);
 	if (isNaN(quantity)) quantity = 1;
-	var productInfo = [quantity, price, productTitle, url];
 
+	var newItem = {
+		"productTitle": productTitle,
+		"quantity": quantity,
+		"price": price,
+		"url": url
+	}
+	
 	chrome.storage.sync.get([key], function(result) {
 		var currentCart = result[key];
-		currentCart.push(productInfo);
+		var items = result[key].items;
+		items.push(newItem);
+		currentCart.items = items;
 
-		//Alert user to what's been added to cart
 		if (productTitle.length > 45) productTitle = productTitle.substring(0, 45) + '...';
 				
 		alert('You added the following: \nTitle: ' + productTitle 
 		+ '\nQty: ' + quantity 
-		+ '\nPrice: ' + price);
+		+ '\nPrice: ' + price
+		+ '\nCurrent ChromeCart Size: ' + items.length);
 
 		chrome.storage.sync.set({[key]: currentCart});
 	});
 
 }
 
-//testGet();
-
-function testGet() {
-	var key = 'pastCartsKey';
-
-	
-	chrome.storage.sync.get([key], function(result) {
-		alert(result[key].length)
-		for (var i = 0; i < result[key].length; i++) alert(result[key][i]);
-	});
-}
-
-//If it is the user's first time with the extension, the current size of the cart must be initialized chrome storage
+//If it is the user's first time with the extension, the currentCart, pastCarts, and viewingCart must be initialized
 function initializeCart() {
-	var key = 'cartSizeKey';
-	var intialCartSize = 0;
-	chrome.storage.sync.get([key], function(result) {
-		if (result[key] === undefined) {
-			chrome.storage.sync.set({[key]: intialCartSize});
-		}
-	});
-	
-	var currentCart = 'currentCartKey';
-	chrome.storage.sync.get([currentCart], function(result) {
-		if (result[currentCart] === undefined) {
-			var initialArray = [];
-			chrome.storage.sync.set({[currentCart]: initialArray});
-			alert('initial array')
-		}
-	});
-
 	var pastCartsKey = 'pastCartsKey';
 	chrome.storage.sync.get([pastCartsKey], function(result) {
 		if (result[pastCartsKey] === undefined) {
-			var initialArray = [];
-			chrome.storage.sync.set({[pastCartsKey]: initialArray});
-			alert('initial array')
+			var intial = {"pastCarts": []}
+			chrome.storage.sync.set({[pastCartsKey]: intial});
+		}
+	});
+
+	var currentCart = 'currentCartKey';
+	chrome.storage.sync.get([currentCart], function(result) {
+		if (result[currentCart] === undefined) {
+			var intial = {"items": []}
+			chrome.storage.sync.set({[currentCart]: intial});
+		}
+	});
+
+	var viewingKey = 'viewingCartKey';
+	chrome.storage.sync.get([viewingKey], function(result) {
+		if (result[viewingKey] === undefined) {
+			var intial = {"cartViewing": "current", "pastCart": ""};
+			chrome.storage.sync.set({[viewingKey]: intial});
 		}
 	});
 }
