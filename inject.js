@@ -155,27 +155,13 @@ function addProduct(quantity, price, productTitle, url) {
 
 }
 
-//testGet();
-
-function testGet() {
-	var key = 'pastCartsKey';
-
-	
-	chrome.storage.sync.get([key], function(result) {
-		alert(result[key].length)
-		for (var i = 0; i < result[key].length; i++) alert(result[key][i]);
-	});
-}
-
-//If it is the user's first time with the extension, the current size of the cart must be initialized chrome storage
+//If it is the user's first time with the extension, the currentCart, pastCarts, and viewingCart must be initialized
 function initializeCart() {
-
 	var pastCartsKey = 'pastCartsKey';
 	chrome.storage.sync.get([pastCartsKey], function(result) {
 		if (result[pastCartsKey] === undefined) {
 			var intial = {"pastCarts": []}
 			chrome.storage.sync.set({[pastCartsKey]: intial});
-			alert('initial array')
 		}
 	});
 
@@ -184,7 +170,14 @@ function initializeCart() {
 		if (result[currentCart] === undefined) {
 			var intial = {"items": []}
 			chrome.storage.sync.set({[currentCart]: intial});
-			alert('initial array')
+		}
+	});
+
+	var viewingKey = 'viewingCartKey';
+	chrome.storage.sync.get([viewingKey], function(result) {
+		if (result[viewingKey] === undefined) {
+			var intial = {"cartViewing": "current", "pastCart": ""};
+			chrome.storage.sync.set({[viewingKey]: intial});
 		}
 	});
 }
